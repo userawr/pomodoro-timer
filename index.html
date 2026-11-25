@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🍅 番茄鐘</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <header>
+      <h1>🍅 番茄鐘</h1>
+    </header>
+
+    <nav class="phase-tabs" role="tablist">
+      <button class="tab active" data-phase="focus" role="tab" aria-selected="true">專注</button>
+      <button class="tab" data-phase="short" role="tab" aria-selected="false">短休息</button>
+      <button class="tab" data-phase="long" role="tab" aria-selected="false">長休息</button>
+    </nav>
+
+    <main class="card">
+      <div class="phase-label" id="phaseLabel">🎯 專注時間</div>
+
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 220 220" aria-hidden="true">
+          <circle class="ring-bg"   cx="110" cy="110" r="96" />
+          <circle class="ring-prog" cx="110" cy="110" r="96" id="ringProg" />
+        </svg>
+        <div class="time-display" id="timeDisplay" aria-live="polite">25:00</div>
+      </div>
+
+      <div class="pomodoro-track">
+        <span class="track-label">今日進度</span>
+        <div class="tomato-dots" id="tomatoDots">
+          <span class="dot" data-idx="0">🍅</span>
+          <span class="dot" data-idx="1">🍅</span>
+          <span class="dot" data-idx="2">🍅</span>
+          <span class="dot" data-idx="3">🍅</span>
+        </div>
+        <span class="cycle-label" id="cycleLabel">第 1 組 · 共完成 0 個</span>
+      </div>
+
+      <div class="controls">
+        <button class="btn btn-icon" id="resetBtn" title="重置" aria-label="重置">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+        </button>
+
+        <button class="btn btn-primary" id="startBtn" aria-label="開始">
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5,3 19,12 5,21"/>
+          </svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+            <rect x="6" y="4" width="4" height="16"/>
+            <rect x="14" y="4" width="4" height="16"/>
+          </svg>
+        </button>
+
+        <button class="btn btn-icon" id="skipBtn" title="跳過" aria-label="跳過此階段">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polygon points="5,4 15,12 5,20" fill="currentColor" stroke="none"/>
+            <line x1="19" y1="4" x2="19" y2="20"/>
+          </svg>
+        </button>
+      </div>
+    </main>
+
+    <section class="settings card-sm">
+      <h2>⚙️ 設定</h2>
+      <div class="setting-row">
+        <label for="focusMin">專注（分鐘）</label>
+        <input type="number" id="focusMin" min="1" max="90" value="25" />
+      </div>
+      <div class="setting-row">
+        <label for="shortMin">短休息（分鐘）</label>
+        <input type="number" id="shortMin" min="1" max="30" value="5" />
+      </div>
+      <div class="setting-row">
+        <label for="longMin">長休息（分鐘）</label>
+        <input type="number" id="longMin" min="1" max="60" value="15" />
+      </div>
+      <div class="setting-row">
+        <label for="cycleCount">長休息間隔（個）</label>
+        <input type="number" id="cycleCount" min="1" max="10" value="4" />
+      </div>
+      <div class="setting-row">
+        <label>
+          <input type="checkbox" id="autoStart" checked /> 階段結束後自動開始
+        </label>
+      </div>
+      <div class="setting-row">
+        <label>
+          <input type="checkbox" id="notifEnabled" checked /> 桌面通知
+        </label>
+      </div>
+    </section>
+
+    <footer>Made with ❤️ &nbsp;·&nbsp; <span id="currentTime"></span></footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
